@@ -1,8 +1,8 @@
 version: "3"
 services:
-  chatBot:
+  chatbot:
     image: runyanjake/chatbot
-    cointainer_name: chatbot_whitney
+    container_name: chatbot_whitney
     restart: always
     build: .
     ports:
