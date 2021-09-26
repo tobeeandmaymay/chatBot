@@ -1,0 +1,9 @@
+version: "3"
+services:
+  chatBot:
+    image: runyanjake/chatBot
+    cointainer_name: chatbot_whitney
+    restart: always
+    build: .
+    ports:
+      - "7080:7080"

@@ -1,0 +1,6 @@
+{
+  "name": "chatBot",
+  "dependencies": {
+    "tmi.js": "latest"
+  }
+}
