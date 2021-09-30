@@ -15,7 +15,7 @@ Docker-compose expects a `config.json` file containing credentials for the bot u
 }
 ```
 
-Include `data.json` which is defined as a volume in `docker-compose.yml` so we can persist data. At the bare minimum include empty json:
+Include `data.json` which is defined as a volume in `docker-compose.yml` so we can persist data. At the bare minimum include an empty json:
 ```
 {}
 ```
