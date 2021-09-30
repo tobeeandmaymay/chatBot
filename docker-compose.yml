@@ -7,3 +7,6 @@ services:
     build: .
     ports:
       - "7080:7080"
+    volumes:
+      - "data.json:/etc/chatBot/data.json"
+      - "config.json:/etc/chatBot/config.json"

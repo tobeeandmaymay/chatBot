@@ -25,3 +25,5 @@ Build & run a docker container:
 `docker build --tag="tobeeandmaymay/chatbot" .`
 
 `docker-compose up -d`
+
+It is expected that the `data.json` file will be linked to a file on the host filesystem in `docker-compose.yml` so we can persist data.

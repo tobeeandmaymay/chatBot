@@ -1,8 +1,19 @@
+const fs = require("fs");
 const tmi = require('tmi.js');
 const request = require('request');
 const config = require('./config.json');
 
-var meowCounter = 0;
+// Read data file
+var data = null;
+try {
+    let rawJSON = fs.readFileSync('./data.json');
+    data = JSON.parse(rawJSON);
+} catch (err) {
+    console.log(`Error reading data from disk: ${err}`);
+    process.exit(1)
+}
+formatData();
+var lastSync = new Date();
 
 // Read config
 const opts = {
@@ -49,6 +60,14 @@ function onMessageHandler (channel, context, msg, self) {
     } else {
         console.log(`Unknown command ${commandName}`);
     }
+
+    //Serialize data if necessary
+    var curTime = new Date();
+        if(Math.abs(curTime.getTime() - lastSync.getTime()) > 10000){
+            console.log("Syncing chatbot data... Time since last sync: " + Math.abs(curTime.getTime() - lastSync.getTime()))
+            syncData();
+            lastSync = curTime;
+        }
 }
 
 function commands (channel, context) {
@@ -75,8 +94,26 @@ function http (channel, context) {
 }
 
 function meow (channel, context) {
-    meowCounter++;
-    client.say(channel, "@" + context.username + " just sent a meow with the !meow command! There have been " + meowCounter + " meows made so far!");
+    if (data["meows"] == null) {
+        data["meows"] = 1;
+    } else {
+        data["meows"] = data["meows"] + 1;
+    }
+    client.say(channel, "@" + context.username + " just sent a meow with the !meow command! There have been " + data["meows"] + " meows made so far!");
+}
+
+function syncData () {
+    try {
+        let jsonString = JSON.stringify(data);
+        fs.writeFileSync('./data.json', jsonString)
+    } catch (err) {
+        console.log(`Error writing data to disk: ${err}`);
+        process.exit(1)
+    }
+}
+
+function formatData () {
+    //nothing yet
 }
 
 
