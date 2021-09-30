@@ -6,7 +6,7 @@ The initial !test command pings https://node.whitney.rip and sends a success mes
 Uses twitchdevelopers' https://gist.github.com/twitchdevelopers/afda75fe0a43453e97e97b25232778de for a jumping off point.
 
 ### Requirements
-Expects a "config.json" file containing credentials for the bot user. Example Contents:
+Docker-compose expects a `data/config.json` file containing credentials for the bot user. Example Contents:
 ```
 {
   "username": "chatBotTwitchUsername",
@@ -14,6 +14,9 @@ Expects a "config.json" file containing credentials for the bot user. Example Co
   "channel": "targetChannel"
 }
 ```
+
+Include `data/data.json` which is defined as a volume in `docker-compose.yml` so we can persist data.
+
 Twitch suggests getting the oauth token by logging into the chatBot's twitch account and visiting https://twitchapps.com/tmi/.
 
 ### Usage
@@ -25,5 +28,3 @@ Build & run a docker container:
 `docker build --tag="tobeeandmaymay/chatbot" .`
 
 `docker-compose up -d`
-
-It is expected that the `data.json` file will be linked to a file on the host filesystem in `docker-compose.yml` so we can persist data.
