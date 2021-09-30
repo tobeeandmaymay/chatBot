@@ -1,6 +1,7 @@
 {
   "name": "chatBot",
   "dependencies": {
-    "tmi.js": "latest"
+    "tmi.js": "latest",
+    "request": "latest"
   }
 }
