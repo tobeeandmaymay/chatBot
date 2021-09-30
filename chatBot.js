@@ -37,8 +37,10 @@ function onMessageHandler (channel, context, msg, self) {
     if (commandName === '!commands') {
         console.log("User " + context.username + " requested command !commands.");
         commands(channel, context);
-    }
-    if (commandName === '!test') {
+    } else if (commandName === '!feed') {
+        console.log("User " + context.username + " requested command !feed.");
+        feed(channel, context);
+    } else if (commandName === '!test') {
         console.log("User " + context.username + " requested command !http.");
         http(channel, context);
     } else if (commandName === '!meow') {
@@ -50,7 +52,11 @@ function onMessageHandler (channel, context, msg, self) {
 }
 
 function commands (channel, context) {
-    client.say(channel, "@" + context.username + ": !commands !meow");
+    client.say(channel, "@" + context.username + ": !commands !feed !meow");
+}
+
+function feed (channel, context) {
+    client.say(channel, "@" + context.username + ": Function not implemented yet, sorry!");
 }
 
 function http (channel, context) {
