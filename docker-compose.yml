@@ -2,11 +2,11 @@ version: "3"
 services:
   chatbot:
     image: tobeeandmaymay/chatbot
-    container_name: chatbot_whitney
+    container_name: chatbot_tobeeandmaymay_whitney
     restart: always
     build: .
     ports:
       - "7080:7080"
     volumes:
-      - "data.json:/etc/chatBot/data.json"
-      - "config.json:/etc/chatBot/config.json"
+      - "./data.json:/etc/chatBot/data.json"
+      - "./config.json:/etc/chatBot/config.json"
